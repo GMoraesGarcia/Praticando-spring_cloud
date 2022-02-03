@@ -1,4 +1,4 @@
-package com.example.hrapigatewatzuul;
+package com.devsuperior.hrapigatewayzuul;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @EnableEurekaClient
 @EnableZuulProxy
 @SpringBootApplication
-public class HrApiGatewatZuulApplication {
+public class HrApiGatewayZuulApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HrApiGatewatZuulApplication.class, args);
+		SpringApplication.run(HrApiGatewayZuulApplication.class, args);
 	}
 
 }
