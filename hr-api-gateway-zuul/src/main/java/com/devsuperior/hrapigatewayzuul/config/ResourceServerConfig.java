@@ -45,6 +45,33 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		.antMatchers(ADMIN).hasRole("ADMIN")
 		.anyRequest().authenticated();
 
+		http.cors().configurationSource(corsConfigurationSource());
+
+	}
+
+	@Bean
+	public CorsConfigurationSource corsConfigurationSource(){
+		CorsConfiguration corsConfiguration = new CorsConfiguration();
+
+		corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
+		corsConfiguration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "PATCH"));
+		corsConfiguration.setAllowCredentials(true);
+		corsConfiguration.setAllowedHeaders(Arrays.asList("Authorization","Content-Type"));
+
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+
+		source.registerCorsConfiguration("/**",corsConfiguration);
+
+		return source;
+	}
+
+	@Bean
+	public FilterRegistrationBean<CorsFilter> corsFilter(){
+		FilterRegistrationBean bean = new FilterRegistrationBean<>(new CorsFilter(corsConfigurationSource()));
+
+		bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+		return bean;
+
 	}
 	
 
