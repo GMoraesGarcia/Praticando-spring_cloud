@@ -22,21 +22,13 @@ import java.util.List;
 public class WorkerResource {
     private static Logger logger = LoggerFactory.getLogger(WorkerResource.class);
 
-    @Value("${test.config}")
-    private String testConfig;
-
     @Autowired
     private Environment environment;
 
     @Autowired
     private WorkerRepository repository;
 
-    @GetMapping("/configs")
-    public ResponseEntity<Void> getConfigs(){
-        System.out.println("Config" + testConfig);
 
-    return ResponseEntity.noContent().build();
-    }
 
     @GetMapping
     public ResponseEntity<List<Worker>> findAll(){
@@ -47,11 +39,11 @@ public class WorkerResource {
     @GetMapping("/{id}")
     public ResponseEntity<Worker> findById(@PathVariable Long id){
 
-        try {
+       /* try {
             Thread.sleep(3000L);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
 
         logger.info("Port = " + environment.getProperty("local.server.port"));
 
